@@ -1,0 +1,22 @@
+--- !tapi-tbd
+tbd-version:     4
+targets:         [ arm64-ios ]
+install-name:    '/usr/lib/libSystem.B.dylib'
+current-version: 1311
+exports:
+  - targets:     [ arm64-ios ]
+    symbols:     [ _getenv, _fopen, _fclose, _fprintf, _fputs, _fflush, _fwrite, _snprintf, _vsnprintf,
+                   _malloc, _calloc, _realloc, _free, _memcpy, _memmove, _memset, _memcmp,
+                   _strlen, _strcmp, _strncmp, _strcpy, _strncpy, _strstr, _strchr, _strdup, _strtol,
+                   _time, _gettimeofday, _mkdir, _dlopen, _dlsym, _dlerror, _dladdr,
+                   _socket, _connect, _sendto, _recvfrom, _bind, _close, _getsockname, _inet_pton, _inet_ntop,
+                   _pthread_create, _pthread_mutex_init, _pthread_mutex_lock, _pthread_mutex_unlock,
+                   __dyld_image_count, __dyld_get_image_header, __dyld_get_image_vmaddr_slide, __dyld_get_image_name,
+                   __dyld_register_func_for_add_image, _mprotect, _vm_protect, _mach_task_self_,
+                   ___stack_chk_fail, ___stack_chk_guard, _dispatch_async_f, _dispatch_after_f,
+                   _dispatch_time, __dispatch_main_q, _dispatch_get_global_queue,
+                   _fread, _CCCrypt, __NSConcreteGlobalBlock, __NSConcreteStackBlock, __Block_copy, __Block_release,
+                   _pthread_detach, _listen, _setsockopt, _accept, _usleep, _send, _recv, _bzero, dyld_stub_binder,
+                   _recvfrom, _inet_ntop, _getifaddrs, _freeifaddrs, _arc4random_buf, _dispatch_queue_create, ___error,
+                   _mach_vm_read_overwrite ]
+...

@@ -1,0 +1,17 @@
+{
+  "name": "blazing-online",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "test": "vitest run",
+    "build:host": "node host/build.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "buffer": "^6.0.3",
+    "esbuild": "^0.27.7",
+    "typescript": "^5.9.0",
+    "vitest": "^5.0.3"
+  }
+}
