@@ -7,9 +7,10 @@ Design: `docs/superpowers/specs/2026-10-13-blazing-online-mod-design.md`.
 ## Build (no Mac needed)
 
 ```
-docker build -t blazing-online-build .
-MSYS_NO_PATHCONV=1 docker run --rm -v "$(pwd -W):/mod" blazing-online-build make
+./build.sh
 ```
+
+(`make clean` also deletes `build/host.js`; `build.sh` regenerates it, a bare `make` does not.)
 
 Output: `build/BlazingOnline.dylib`. There is no iOS SDK: `src/sys.h` declares the APIs used
 and `stubs/*.tbd` name the libraries that export them (add a symbol there when the link fails).
