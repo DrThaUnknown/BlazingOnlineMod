@@ -14,7 +14,7 @@ and warns if `BlazingLoader.dylib` is not loaded (not Rebirth/Forge: routing wil
 | Mod | Host (JS) | Protocol | Container | Result |
 |-----|-----------|----------|-----------|--------|
 | 0.2.6 | 0.2.6 | none | Blazing:Forge 1.8.7 (bundle `dev.blazingrebirth.ios`, build 18700, engine `ios-onphone-43-startup-migration-app11-data7`) | works (reported by owner) |
-| 0.3.1 | 0.3.1 | 1 | Blazing:Forge 1.8.7 | build verified (same load commands as Forge's 0.2.6 dylib); on-phone test pending |
+| 0.3.1 | 0.3.1 | 1 | Blazing:Forge 1.8.7 and 2.0.10 (build 20012; both bundle 0.2.6) | dylib built, same load commands; on-phone test pending |
 
 Update this table after each phone test. The mod patches game code located at runtime
 (`src/match.c`, `src/rebind.c`) against Rebirth 2.28.0; a different game build is untested.
