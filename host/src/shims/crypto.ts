@@ -208,7 +208,7 @@ function cbc(alg: string, key: Uint8Array, iv: Uint8Array, decrypt: boolean) {
       }
       if (data.length % 16) throw new Error("crypto shim: data is not a multiple of the block size");
       const out = Buffer.alloc(data.length);
-      let prev = Uint8Array.from(iv);
+      let prev: Uint8Array = Uint8Array.from(iv);
       for (let off = 0; off < data.length; off += 16) {
         const block = data.subarray(off, off + 16);
         if (decrypt) {
