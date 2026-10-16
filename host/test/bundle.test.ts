@@ -10,6 +10,7 @@ import vm from "node:vm";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import { decodeBody, encodeBody } from "../../vendor/shared/codec.ts";
 import { P, asString, type PV } from "../../vendor/photon/protocol16.ts";
+import { HOST_VERSION } from "../src/version.ts";
 import { TestClient } from "../../vendor/test/client.ts";
 
 type Ctx = Record<string, unknown> & {
@@ -104,7 +105,7 @@ afterAll(() => {
 describe("host bundle in a JSC-like sandbox", () => {
   it("starts with only __bo available", () => {
     expect(ctx.__bo_status()).toMatch(/^hosting/);
-    expect(logs.some((l) => l.startsWith("host 0.3.0"))).toBe(true);
+    expect(logs.some((l) => l.startsWith(`host ${HOST_VERSION}`))).toBe(true);
   });
 
   it("serves the multiplayer API with the game codec", async () => {

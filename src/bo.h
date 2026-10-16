@@ -4,6 +4,9 @@
 #include "buf.h"
 
 #define BO_VERSION "0.3.1"
+// Bumped when the host/guest wire contract changes (HTTP API, Photon room data). Guests refuse a host
+// with a different protocol; an older host that does not report one is accepted with a warning.
+#define BO_PROTOCOL 1
 
 // log.c -- Documents/BlazingOnline/online.log
 void bo_log_init(void);

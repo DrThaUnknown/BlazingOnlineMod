@@ -105,7 +105,7 @@ describe("Blazing Online host", () => {
   it("answers the menu's connection test", async () => {
     const res = await fetch(`http://127.0.0.1:${host.ports.http}/healthz`);
     expect(res.status).toBe(200);
-    expect(await res.text()).toBe("ok");
+    expect(await res.text()).toMatch(/^ok bo=[0-9]+\.[0-9]+\.[0-9]+ proto=[0-9]+$/);
   });
 
   it("counts practice battles and answers every PvP read the game makes", async () => {

@@ -7,6 +7,7 @@ import { decodeBody, encodeBody } from "../../vendor/shared/codec.ts";
 import type { HttpRequest, HttpResponse } from "./platform.ts";
 import type { HostPlayer, HostState } from "./state.ts";
 import { titleFor } from "./titles.ts";
+import { HOST_VERSION, PROTOCOL } from "./version.ts";
 
 // INFERRED points per battle (the official values were computed on Bandai's servers; the client's
 // rtpvpchampresultbonus table holds multipliers we have not decoded). Title points never drop;
@@ -230,7 +231,7 @@ export function createApi(state: HostState, now: () => number, log: (m: string) 
       body: encodeBody(envelope(status, payload, message)),
       contentType: "text/plain; charset=utf-8",
     });
-    if (path.replace(/^\/+/, "") === "healthz") return { status: 200, body: "ok" };
+    if (path.replace(/^\/+/, "") === "healthz") return { status: 200, body: `ok bo=${HOST_VERSION} proto=${PROTOCOL}` };
     let body: Body;
     try {
       body = req.body.trim() ? decodeBody<Body>(req.body) : {};

@@ -8,7 +8,8 @@ import { createApi } from "./api.ts";
 import type { Platform, UdpSocket } from "./platform.ts";
 import { HostState, type CharaLite } from "./state.ts";
 
-export const HOST_VERSION = "0.3.0";
+import { HOST_VERSION, PROTOCOL } from "./version.ts";
+export { HOST_VERSION, PROTOCOL };
 
 export interface HostOptions {
   /** The address joiners use to reach this host (handed out as the Photon master/game address). */

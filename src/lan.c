@@ -78,7 +78,24 @@ static void *test_thread(void *arg) {
       bo_send_all(fd, req, sizeof req - 1);
       ssize_t n = recv(fd, buf, sizeof buf - 1, 0);
       j->ok = n > 0 && strstr(buf, "200") != NULL;
-      snprintf(j->msg, sizeof j->msg, j->ok ? "Connected to the host at %s." : "Reached %s, but it did not answer as a Blazing Online host.", g_cfg.host);
+      const char *body = j->ok ? strstr(buf, "\r\n\r\n") : NULL;
+      const char *pp = body ? strstr(body, "proto=") : NULL;
+      int proto = 0;
+      if (pp) for (pp += 6; *pp >= '0' && *pp <= '9'; pp++) proto = proto * 10 + (*pp - '0');
+      if (!j->ok) {
+        snprintf(j->msg, sizeof j->msg, "Reached %s, but it did not answer as a Blazing Online host.", g_cfg.host);
+      } else if (pp && proto != BO_PROTOCOL) {
+        const char *bp = strstr(body, "bo=");
+        char hv[16] = "?";
+        if (bp) { int k = 0; for (bp += 3; *bp && *bp != ' ' && *bp != '\r' && *bp != '\n' && k < 15; bp++) hv[k++] = *bp; hv[k] = 0; }
+        j->ok = false;
+        snprintf(j->msg, sizeof j->msg, "The host at %s runs Blazing Online %s (protocol %d); you have %s (protocol %d). Both phones need the same mod version.",
+                 g_cfg.host, hv, proto, BO_VERSION, BO_PROTOCOL);
+      } else if (!pp) {
+        snprintf(j->msg, sizeof j->msg, "Connected to the host at %s, but it is an older Blazing Online without version info; update it if matches misbehave.", g_cfg.host);
+      } else {
+        snprintf(j->msg, sizeof j->msg, "Connected to the host at %s (Blazing Online, protocol %d).", g_cfg.host, proto);
+      }
     }
     close(fd);
   }
